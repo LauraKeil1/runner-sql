@@ -15,10 +15,10 @@ app.get("/endpoints", function (req, res) {
 
 // define second endpoint (handles the payload by running both queries and comparing the results)
 app.post("/payload", function (req, res) {
-  var query1 = req.body.payload.query1 ? req.body.payload.query1 : [];
-  var query2 = req.body.payload.query2 ? req.body.payload.query2 : [];
+  const query1 = req.body.payload.query1 ? req.body.payload.query1 : [];
+  const query2 = req.body.payload.query2 ? req.body.payload.query2 : [];
 
-  collectible = {
+  const collectible = {
     query1,
     query2,
     queryResult1: undefined,
@@ -26,8 +26,6 @@ app.post("/payload", function (req, res) {
     test_results: undefined,
     error: undefined,
   };
-
-  // Database connection
 
   handlePayload(collectible)
     .then((collectible) => res.json(collectible))

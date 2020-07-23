@@ -2,7 +2,7 @@
  * Disconnects from the database
  */
 
-const disconnectFromDatabase = function (collectible) {
+const disconnectFromDatabase = function (collectible, db) {
   return new Promise(function (resolve, reject) {
     db.close((err) => {
       if (err) {
