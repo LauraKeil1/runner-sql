@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * Disconnects from the database
  */

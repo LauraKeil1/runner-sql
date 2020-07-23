@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * Validates the queries in two steps:
  * 1. Checking whether it's a SELECT statement (and not DROP etc.)

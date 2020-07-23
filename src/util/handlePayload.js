@@ -1,3 +1,5 @@
+"use strict";
+
 // import functions
 const connectToDatabase = require("./connectToDatabase").connectToDatabase;
 const validateQuery = require("./validateQuery").validateQuery;

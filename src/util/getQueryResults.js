@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * Gets the results for query1 and query2
  */

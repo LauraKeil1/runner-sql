@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * Compares the results for query1 and query2 (taking order into consideration)
  */

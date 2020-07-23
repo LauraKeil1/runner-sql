@@ -1,3 +1,5 @@
+"use strict";
+
 const collectibleValidWithoutResultsSameResults = {
   query1: "SELECT * FROM person ORDER BY lastName DESC LIMIT 1",
   query2: "SELECT * FROM person ORDER BY lastName DESC LIMIT 1",
