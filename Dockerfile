@@ -6,4 +6,4 @@ RUN yarn install
 
 EXPOSE 80
 
-CMD ["node", "src/server.js"]
+CMD yarn start

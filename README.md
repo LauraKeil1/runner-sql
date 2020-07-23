@@ -18,6 +18,16 @@ yarn start
 yarn test
 ```
 
+# Running via Docker
+
+```
+docker build --tag runner-sql:1.0 .
+```
+
+```
+docker run --publish 80:80 --name runner-sql runner-sql:1.0
+```
+
 # Sample requests
 
 ### Getting the endpoints (Request / Response):
