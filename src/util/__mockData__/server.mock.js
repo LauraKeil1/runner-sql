@@ -1,5 +1,23 @@
 "use strict";
 
+const collectibleWithoutQuery1 = {
+  query1: undefined,
+  query2: "SELECT * FROM person ORDER BY lastName DESC LIMIT 1",
+  queryResult1: undefined,
+  queryResult2: undefined,
+  test_results: undefined,
+  error: undefined,
+};
+
+const collectibleWithoutQuery2 = {
+  query1: "SELECT * FROM person ORDER BY lastName DESC LIMIT 1",
+  query2: undefined,
+  queryResult1: undefined,
+  queryResult2: undefined,
+  test_results: undefined,
+  error: undefined,
+};
+
 const collectibleValidWithoutResultsSameResults = {
   query1: "SELECT * FROM person ORDER BY lastName DESC LIMIT 1",
   query2: "SELECT * FROM person ORDER BY lastName DESC LIMIT 1",
@@ -98,6 +116,8 @@ const collectibleValidWithResultsDifferentResults = {
   ],
 };
 
+exports.collectibleWithoutQuery1 = collectibleWithoutQuery1;
+exports.collectibleWithoutQuery2 = collectibleWithoutQuery2;
 exports.collectibleValidWithoutResultsSameResults = collectibleValidWithoutResultsSameResults;
 exports.collectibleInvalidWithoutResults_1 = collectibleInvalidWithoutResults_1;
 exports.collectibleInvalidWithoutResults_2 = collectibleInvalidWithoutResults_2;
