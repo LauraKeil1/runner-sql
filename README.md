@@ -42,40 +42,59 @@ localhost:80/endpoints
 }
 ```
 
-### Handling the payload - Valid SQL-statements and same results (Request / Response):
+### Handling the payload - Valid SQL-statements and same results (cURL Request / Response):
 
 ```json
-{
-  "image": "runner-sql",
+curl --location --request POST 'localhost:80/payload' \
+--header 'Content-Type: application/json' \
+--header 'Content-Type: text/plain' \
+--data-raw '{
   "timeout": 30,
   "user": "test",
   "payload": {
-    "query1": "SELECT * FROM person ORDER BY lastName DESC LIMIT 1",
-    "query2": "SELECT * FROM person ORDER BY lastName DESC LIMIT 1"
+    "query1": "SELECT * FROM customers ORDER BY LastName DESC LIMIT 1",
+    "query2": "SELECT * FROM customers ORDER BY LastName DESC LIMIT 1"
   }
 }
+'
 ```
 
 ```json
 {
-  "query1": "SELECT * FROM person ORDER BY lastName DESC LIMIT 1",
-  "query2": "SELECT * FROM person ORDER BY lastName DESC LIMIT 1",
+  "query1": "SELECT * FROM customers ORDER BY LastName DESC LIMIT 1",
+  "query2": "SELECT * FROM customers ORDER BY LastName DESC LIMIT 1",
   "queryResult1": [
     {
-      "id": 1,
-      "lastName": "Weg",
-      "firstName": "Renate",
-      "address": "Nordweg 5",
-      "city": "Bremen"
+      "CustomerId": 37,
+      "FirstName": "Fynn",
+      "LastName": "Zimmermann",
+      "Company": null,
+      "Address": "Berger Straße 10",
+      "City": "Frankfurt",
+      "State": null,
+      "Country": "Germany",
+      "PostalCode": "60316",
+      "Phone": "+49 069 40598889",
+      "Fax": null,
+      "Email": "fzimmermann@yahoo.de",
+      "SupportRepId": 3
     }
   ],
   "queryResult2": [
     {
-      "id": 1,
-      "lastName": "Weg",
-      "firstName": "Renate",
-      "address": "Nordweg 5",
-      "city": "Bremen"
+      "CustomerId": 37,
+      "FirstName": "Fynn",
+      "LastName": "Zimmermann",
+      "Company": null,
+      "Address": "Berger Straße 10",
+      "City": "Frankfurt",
+      "State": null,
+      "Country": "Germany",
+      "PostalCode": "60316",
+      "Phone": "+49 069 40598889",
+      "Fax": null,
+      "Email": "fzimmermann@yahoo.de",
+      "SupportRepId": 3
     }
   ],
   "test_results": true
@@ -85,44 +104,70 @@ localhost:80/endpoints
 ### Handling the payload - Valid SQL-statements and different results (Request / Response):
 
 ```json
-{
-  "image": "runner-sql",
+curl --location --request POST 'localhost:80/payload' \
+--header 'Content-Type: application/json' \
+--header 'Content-Type: text/plain' \
+--data-raw '{
   "timeout": 30,
   "user": "test",
   "payload": {
-    "query1": "SELECT * FROM person ORDER BY lastName DESC LIMIT 2",
-    "query2": "SELECT * FROM person ORDER BY lastName DESC LIMIT 1"
+    "query1": "SELECT * FROM customers ORDER BY LastName DESC LIMIT 2",
+    "query2": "SELECT * FROM customers ORDER BY LastName DESC LIMIT 1"
   }
-}
+}'
 ```
 
 ```json
 {
-  "query1": "SELECT * FROM person ORDER BY lastName DESC LIMIT 2",
-  "query2": "SELECT * FROM person ORDER BY lastName DESC LIMIT 1",
+  "query1": "SELECT * FROM customers ORDER BY LastName DESC LIMIT 2",
+  "query2": "SELECT * FROM customers ORDER BY LastName DESC LIMIT 1",
   "queryResult1": [
     {
-      "id": 1,
-      "lastName": "Weg",
-      "firstName": "Renate",
-      "address": "Nordweg 5",
-      "city": "Bremen"
+      "CustomerId": 37,
+      "FirstName": "Fynn",
+      "LastName": "Zimmermann",
+      "Company": null,
+      "Address": "Berger Straße 10",
+      "City": "Frankfurt",
+      "State": null,
+      "Country": "Germany",
+      "PostalCode": "60316",
+      "Phone": "+49 069 40598889",
+      "Fax": null,
+      "Email": "fzimmermann@yahoo.de",
+      "SupportRepId": 3
     },
     {
-      "id": 2,
-      "lastName": "Weg",
-      "firstName": "Heiko",
-      "address": "Nordweg 5",
-      "city": "Bremen"
+      "CustomerId": 49,
+      "FirstName": "Stanisław",
+      "LastName": "Wójcik",
+      "Company": null,
+      "Address": "Ordynacka 10",
+      "City": "Warsaw",
+      "State": null,
+      "Country": "Poland",
+      "PostalCode": "00-358",
+      "Phone": "+48 22 828 37 39",
+      "Fax": null,
+      "Email": "stanisław.wójcik@wp.pl",
+      "SupportRepId": 4
     }
   ],
   "queryResult2": [
     {
-      "id": 1,
-      "lastName": "Weg",
-      "firstName": "Renate",
-      "address": "Nordweg 5",
-      "city": "Bremen"
+      "CustomerId": 37,
+      "FirstName": "Fynn",
+      "LastName": "Zimmermann",
+      "Company": null,
+      "Address": "Berger Straße 10",
+      "City": "Frankfurt",
+      "State": null,
+      "Country": "Germany",
+      "PostalCode": "60316",
+      "Phone": "+49 069 40598889",
+      "Fax": null,
+      "Email": "fzimmermann@yahoo.de",
+      "SupportRepId": 3
     }
   ],
   "test_results": false
@@ -132,21 +177,23 @@ localhost:80/endpoints
 ### Handling the payload - Invalid SQL-Statement (Request / Response):
 
 ```json
-{
-  "image": "runner-sql",
+curl --location --request POST 'localhost:80/payload' \
+--header 'Content-Type: application/json' \
+--header 'Content-Type: text/plain' \
+--data-raw '{
   "timeout": 30,
   "user": "test",
   "payload": {
-    "query1": "* FROM person ORDER BY lastName DESC LIMIT 2",
-    "query2": "SELECT * FROM person ORDER BY lastName DESC LIMIT 1"
+    "query1": " * FROM customers ORDER BY LastName DESC LIMIT 2",
+    "query2": "SELECT * FROM customers ORDER BY LastName DESC LIMIT 1"
   }
-}
+}'
 ```
 
 ```json
 {
-  "query1": "* FROM person ORDER BY lastName DESC LIMIT 2",
-  "query2": "SELECT * FROM person ORDER BY lastName DESC LIMIT 1",
+  "query1": " * FROM customers ORDER BY LastName DESC LIMIT 2",
+  "query2": "SELECT * FROM customers ORDER BY LastName DESC LIMIT 1",
   "test_results": false,
   "error": "query1 is not a SELECT-statement"
 }
