@@ -5,10 +5,10 @@ const compareQueryResults = require("../compareQueryResults.js")
   .compareQueryResults;
 
 // import mock data
-const collectibleValidWithResultsSameResults = require("../__mockData__/server.mock")
-  .collectibleValidWithResultsSameResults;
-const collectibleValidWithResultsDifferentResults = require("../__mockData__/server.mock")
-  .collectibleValidWithResultsDifferentResults;
+const eval_collectibleValidWithResultsSameResults = require("../__mockData__/server.mock")
+  .eval_collectibleValidWithResultsSameResults;
+const eval_collectibleValidWithResultsDifferentResults = require("../__mockData__/server.mock")
+  .eval_collectibleValidWithResultsDifferentResults;
 
 /**
  * Unit tests for compareQueryResults
@@ -18,9 +18,9 @@ describe("Unit tests for compareQueryResults", () => {
   it("query results are identical", () => {
     expect.assertions(1);
     return compareQueryResults(
-      collectibleValidWithResultsSameResults,
-      collectibleValidWithResultsSameResults.queryResults1,
-      collectibleValidWithResultsSameResults.queryResults2
+      eval_collectibleValidWithResultsSameResults,
+      eval_collectibleValidWithResultsSameResults.queryResults1,
+      eval_collectibleValidWithResultsSameResults.queryResults2
     ).then((collectible) => {
       expect(collectible).toMatchInlineSnapshot(`
         Object {
@@ -60,6 +60,7 @@ describe("Unit tests for compareQueryResults", () => {
               "SupportRepId": 3,
             },
           ],
+          "request_type": "evaluate",
           "test_results": true,
         }
       `);
@@ -69,9 +70,9 @@ describe("Unit tests for compareQueryResults", () => {
   it("query results are not identical", () => {
     expect.assertions(1);
     return compareQueryResults(
-      collectibleValidWithResultsDifferentResults,
-      collectibleValidWithResultsDifferentResults.queryResult1,
-      collectibleValidWithResultsDifferentResults.queryResult2
+      eval_collectibleValidWithResultsDifferentResults,
+      eval_collectibleValidWithResultsDifferentResults.queryResult1,
+      eval_collectibleValidWithResultsDifferentResults.queryResult2
     ).then((collectible) => {
       expect(collectible).toMatchInlineSnapshot(`
         Object {
@@ -126,6 +127,7 @@ describe("Unit tests for compareQueryResults", () => {
               "SupportRepId": 4,
             },
           ],
+          "request_type": "evaluate",
           "test_results": false,
         }
       `);

@@ -10,11 +10,15 @@ const getQueryResults = function (collectible, query, queryId, db) {
       if (err) {
         reject({ ...collectible, test_results: false, error: err });
       }
-      if (queryId == "query1") {
-        resolve({ collectible: { ...collectible, queryResult1: rows }, db });
-      }
-      if (queryId == "query2") {
-        resolve({ collectible: { ...collectible, queryResult2: rows }, db });
+      if (collectible.request_type == "evaluate") {
+        if (queryId == "query1") {
+          resolve({ collectible: { ...collectible, queryResult1: rows }, db });
+        }
+        if (queryId == "query2") {
+          resolve({ collectible: { ...collectible, queryResult2: rows }, db });
+        }
+      } else if (collectible.request_type == "validate") {
+        resolve({ collectible: { ...collectible, queryResult1: rows, test_results: true }, db });
       }
     });
   });

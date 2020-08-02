@@ -18,10 +18,12 @@ app.get("/endpoints", function (req, res) {
 
 // define second endpoint (handles the payload by running both queries and comparing the results)
 app.post("/payload", function (req, res) {
+  const request_type = req.body.payload.request_type ? req.body.payload.request_type : undefined;
   const query1 = req.body.payload.query1 ? req.body.payload.query1 : undefined;
   const query2 = req.body.payload.query2 ? req.body.payload.query2 : undefined;
 
   const collectible = {
+    request_type,
     query1,
     query2,
     queryResult1: undefined,

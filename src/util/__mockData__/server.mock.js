@@ -1,15 +1,7 @@
 "use strict";
 
-const collectibleWithoutQuery1 = {
-  query1: undefined,
-  query2: "SELECT * FROM customers ORDER BY LastName DESC LIMIT 1",
-  queryResult1: undefined,
-  queryResult2: undefined,
-  test_results: undefined,
-  error: undefined,
-};
-
-const collectibleWithoutQuery2 = {
+const collectibleWithoutRequestType = {
+  request_type: undefined,
   query1: "SELECT * FROM customers ORDER BY LastName DESC LIMIT 1",
   query2: undefined,
   queryResult1: undefined,
@@ -18,7 +10,38 @@ const collectibleWithoutQuery2 = {
   error: undefined,
 };
 
-const collectibleValidWithoutResultsSameResults = {
+const eval_collectibleWithoutQuery1 = {
+  request_type: "evaluate",
+  query1: undefined,
+  query2: "SELECT * FROM customers ORDER BY LastName DESC LIMIT 1",
+  queryResult1: undefined,
+  queryResult2: undefined,
+  test_results: undefined,
+  error: undefined,
+};
+
+const val_collectibleWithoutQuery1 = {
+  request_type: "validate",
+  query1: undefined,
+  query2: "SELECT * FROM customers ORDER BY LastName DESC LIMIT 1",
+  queryResult1: undefined,
+  queryResult2: undefined,
+  test_results: undefined,
+  error: undefined,
+};
+
+const eval_collectibleWithoutQuery2 = {
+  request_type: "evaluate",
+  query1: "SELECT * FROM customers ORDER BY LastName DESC LIMIT 1",
+  query2: undefined,
+  queryResult1: undefined,
+  queryResult2: undefined,
+  test_results: undefined,
+  error: undefined,
+};
+
+const eval_collectibleValidWithoutResultsSameResults = {
+  request_type: "evaluate",
   query1: "SELECT * FROM customers ORDER BY LastName DESC LIMIT 1",
   query2: "SELECT * FROM customers ORDER BY LastName DESC LIMIT 1",
   queryResult1: undefined,
@@ -27,7 +50,35 @@ const collectibleValidWithoutResultsSameResults = {
   error: undefined,
 };
 
-const collectibleInvalidWithoutResults_1 = {
+const val_collectibleValidWithoutResults = {
+  request_type: "validate",
+  query1: "SELECT * FROM customers ORDER BY LastName DESC LIMIT 1",
+  queryResult1: undefined,
+  queryResult2: undefined,
+  test_results: undefined,
+  error: undefined,
+};
+
+const val_collectibleValidSQLError = {
+  request_type: "validate",
+  query1: "SELECT * FROM person ORDER BY LastName DESC LIMIT 1",
+  queryResult1: undefined,
+  queryResult2: undefined,
+  test_results: undefined,
+  error: undefined,
+};
+
+const val_collectibleInvalid = {
+  request_type: "validate",
+  query1: " * FROM person ORDER BY LastName DESC LIMIT 1",
+  queryResult1: undefined,
+  queryResult2: undefined,
+  test_results: undefined,
+  error: undefined,
+};
+
+const eval_collectibleInvalidWithoutResults_1 = {
+  request_type: "evaluate",
   query1: "SELECT * FROM customers ORDER BY LastName DESC LIMIT 1",
   query2: "* FROM customers ORDER BY LastName DESC LIMIT 1",
   queryResult1: undefined,
@@ -36,7 +87,8 @@ const collectibleInvalidWithoutResults_1 = {
   error: undefined,
 };
 
-const collectibleInvalidWithoutResults_2 = {
+const eval_collectibleInvalidWithoutResults_2 = {
+  request_type: "evaluate",
   query1: "SELECT * FROM customers ORDER BY LastName DESC LIMIT 1; SELECT * FROM customers",
   query2: "SELECT * FROM customers ORDER BY LastName DESC LIMIT 1",
   queryResult1: undefined,
@@ -45,7 +97,8 @@ const collectibleInvalidWithoutResults_2 = {
   error: undefined,
 };
 
-const collectibleInvalidWithoutResults_3 = {
+const eval_collectibleInvalidWithoutResults_3 = {
+  request_type: "evaluate",
   query1: "DROP TABLE customers",
   query2: "SELECT * FROM customers ORDER BY LastName DESC LIMIT 1",
   queryResult1: undefined,
@@ -54,7 +107,8 @@ const collectibleInvalidWithoutResults_3 = {
   error: undefined,
 };
 
-const collectibleValidWithoutResultsDifferentResults = {
+const eval_collectibleValidWithoutResultsDifferentResults = {
+  request_type: "evaluate",
   query1: "SELECT * FROM customers ORDER BY LastName DESC LIMIT 1",
   query2: "SELECT * FROM customers ORDER BY LastName DESC LIMIT 2;",
   queryResult1: undefined,
@@ -63,7 +117,8 @@ const collectibleValidWithoutResultsDifferentResults = {
   error: undefined,
 };
 
-const collectibleValidWithResultsSameResults = {
+const eval_collectibleValidWithResultsSameResults = {
+  request_type: "evaluate",
   query1: "SELECT * FROM customers ORDER BY LastName DESC LIMIT 1",
   query2: "SELECT * FROM customers ORDER BY LastName DESC LIMIT 1",
   queryResult1: [
@@ -102,7 +157,8 @@ const collectibleValidWithResultsSameResults = {
   ],
 };
 
-const collectibleValidWithResultsDifferentResults = {
+const eval_collectibleValidWithResultsDifferentResults = {
+  request_type: "evaluate",
   query1: "SELECT * FROM customers ORDER BY LastName DESC LIMIT 1",
   query2: "SELECT * FROM customers ORDER BY LastName DESC LIMIT 2",
   queryResult1: [
@@ -156,12 +212,17 @@ const collectibleValidWithResultsDifferentResults = {
   ],
 };
 
-exports.collectibleWithoutQuery1 = collectibleWithoutQuery1;
-exports.collectibleWithoutQuery2 = collectibleWithoutQuery2;
-exports.collectibleValidWithoutResultsSameResults = collectibleValidWithoutResultsSameResults;
-exports.collectibleInvalidWithoutResults_1 = collectibleInvalidWithoutResults_1;
-exports.collectibleInvalidWithoutResults_2 = collectibleInvalidWithoutResults_2;
-exports.collectibleInvalidWithoutResults_3 = collectibleInvalidWithoutResults_3;
-exports.collectibleValidWithoutResultsDifferentResults = collectibleValidWithoutResultsDifferentResults;
-exports.collectibleValidWithResultsSameResults = collectibleValidWithResultsSameResults;
-exports.collectibleValidWithResultsDifferentResults = collectibleValidWithResultsDifferentResults;
+exports.collectibleWithoutRequestType = collectibleWithoutRequestType;
+exports.eval_collectibleWithoutQuery1 = eval_collectibleWithoutQuery1;
+exports.val_collectibleWithoutQuery1 = val_collectibleWithoutQuery1;
+exports.eval_collectibleWithoutQuery2 = eval_collectibleWithoutQuery2;
+exports.eval_collectibleValidWithoutResultsSameResults = eval_collectibleValidWithoutResultsSameResults;
+exports.val_collectibleValidWithoutResults = val_collectibleValidWithoutResults;
+exports.eval_collectibleInvalidWithoutResults_1 = eval_collectibleInvalidWithoutResults_1;
+exports.eval_collectibleInvalidWithoutResults_2 = eval_collectibleInvalidWithoutResults_2;
+exports.eval_collectibleInvalidWithoutResults_3 = eval_collectibleInvalidWithoutResults_3;
+exports.eval_collectibleValidWithoutResultsDifferentResults = eval_collectibleValidWithoutResultsDifferentResults;
+exports.eval_collectibleValidWithResultsSameResults = eval_collectibleValidWithResultsSameResults;
+exports.eval_collectibleValidWithResultsDifferentResults = eval_collectibleValidWithResultsDifferentResults;
+exports.val_collectibleValidSQLError = val_collectibleValidSQLError;
+exports.val_collectibleInvalid = val_collectibleInvalid;
