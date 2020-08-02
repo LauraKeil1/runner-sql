@@ -42,7 +42,7 @@ localhost:80/endpoints
 }
 ```
 
-### Handling the payload - Valid SQL-statements and same results (cURL Request / Response):
+### Handling the payload (evaluate) - Valid SQL-statements and same results (cURL Request / Response):
 
 ```json
 curl --location --request POST 'localhost:80/payload' \
@@ -52,15 +52,16 @@ curl --location --request POST 'localhost:80/payload' \
   "timeout": 30,
   "user": "test",
   "payload": {
+  	"request_type": "evaluate",
     "query1": "SELECT * FROM customers ORDER BY LastName DESC LIMIT 1",
     "query2": "SELECT * FROM customers ORDER BY LastName DESC LIMIT 1"
   }
-}
-'
+}'
 ```
 
 ```json
 {
+  "request_type": "evaluate",
   "query1": "SELECT * FROM customers ORDER BY LastName DESC LIMIT 1",
   "query2": "SELECT * FROM customers ORDER BY LastName DESC LIMIT 1",
   "queryResult1": [
@@ -101,7 +102,7 @@ curl --location --request POST 'localhost:80/payload' \
 }
 ```
 
-### Handling the payload - Valid SQL-statements and different results (Request / Response):
+### Handling the payload (evaluate) - Valid SQL-statements and different results (Request / Response):
 
 ```json
 curl --location --request POST 'localhost:80/payload' \
@@ -111,6 +112,7 @@ curl --location --request POST 'localhost:80/payload' \
   "timeout": 30,
   "user": "test",
   "payload": {
+  	"request_type": "evaluate",
     "query1": "SELECT * FROM customers ORDER BY LastName DESC LIMIT 2",
     "query2": "SELECT * FROM customers ORDER BY LastName DESC LIMIT 1"
   }
@@ -119,6 +121,7 @@ curl --location --request POST 'localhost:80/payload' \
 
 ```json
 {
+  "request_type": "evaluate",
   "query1": "SELECT * FROM customers ORDER BY LastName DESC LIMIT 2",
   "query2": "SELECT * FROM customers ORDER BY LastName DESC LIMIT 1",
   "queryResult1": [
@@ -174,7 +177,7 @@ curl --location --request POST 'localhost:80/payload' \
 }
 ```
 
-### Handling the payload - Invalid SQL-Statement (Request / Response):
+### Handling the payload (evaluate) - Invalid SQL-Statement (Request / Response):
 
 ```json
 curl --location --request POST 'localhost:80/payload' \
@@ -184,6 +187,7 @@ curl --location --request POST 'localhost:80/payload' \
   "timeout": 30,
   "user": "test",
   "payload": {
+  	"request_type": "evaluate",
     "query1": " * FROM customers ORDER BY LastName DESC LIMIT 2",
     "query2": "SELECT * FROM customers ORDER BY LastName DESC LIMIT 1"
   }
@@ -192,9 +196,94 @@ curl --location --request POST 'localhost:80/payload' \
 
 ```json
 {
+  "request_type": "evaluate",
   "query1": " * FROM customers ORDER BY LastName DESC LIMIT 2",
   "query2": "SELECT * FROM customers ORDER BY LastName DESC LIMIT 1",
   "test_results": false,
   "error": "query1 is not a SELECT-statement"
+}
+```
+
+### Handling the payload (validate) - Valid SQL-statement (Request / Response):
+
+```json
+curl --location --request POST 'localhost:80/payload' \
+--header 'Content-Type: application/json' \
+--header 'Content-Type: text/plain' \
+--data-raw '{
+    "timeout": 30,
+    "user": "test",
+    "payload": {
+        "request_type": "validate",
+        "query1": "SELECT * FROM customers ORDER BY LastName DESC LIMIT 2"
+    }
+}'
+```
+
+```json
+{
+  "request_type": "validate",
+  "query1": "SELECT * FROM customers ORDER BY LastName DESC LIMIT 2",
+  "queryResult1": [
+    {
+      "CustomerId": 37,
+      "FirstName": "Fynn",
+      "LastName": "Zimmermann",
+      "Company": null,
+      "Address": "Berger Straße 10",
+      "City": "Frankfurt",
+      "State": null,
+      "Country": "Germany",
+      "PostalCode": "60316",
+      "Phone": "+49 069 40598889",
+      "Fax": null,
+      "Email": "fzimmermann@yahoo.de",
+      "SupportRepId": 3
+    },
+    {
+      "CustomerId": 49,
+      "FirstName": "Stanisław",
+      "LastName": "Wójcik",
+      "Company": null,
+      "Address": "Ordynacka 10",
+      "City": "Warsaw",
+      "State": null,
+      "Country": "Poland",
+      "PostalCode": "00-358",
+      "Phone": "+48 22 828 37 39",
+      "Fax": null,
+      "Email": "stanisław.wójcik@wp.pl",
+      "SupportRepId": 4
+    }
+  ],
+  "test_results": true
+}
+```
+
+### Handling the payload (validate) - Invalid SQL-Statement (Request / Response):
+
+```json
+curl --location --request POST 'localhost:80/payload' \
+--header 'Content-Type: application/json' \
+--header 'Content-Type: text/plain' \
+--data-raw '{
+    "timeout": 30,
+    "user": "test",
+    "payload": {
+        "request_type": "validate",
+        "query1": "SELECT * FROM person ORDER BY LastName DESC LIMIT 2"
+    }
+}'
+```
+
+```json
+{
+  "request_type": "validate",
+  "query1": "SELECT * FROM person ORDER BY LastName DESC LIMIT 2",
+  "test_results": false,
+  "error": {
+    "errno": 1,
+    "code": "SQLITE_ERROR"
+  }
 }
 ```
