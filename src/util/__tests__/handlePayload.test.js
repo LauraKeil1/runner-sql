@@ -27,7 +27,7 @@ const val_collectibleInvalid = require("../__mockData__/server.mock")
  */
 
 describe("Unit tests for handlePayload - validate", () => {
-  it("validate - Request is handled correctly (without error)", () => {
+  it("validate - without error", () => {
     expect.assertions(1);
     return handlePayload(val_collectibleValidWithoutResults).then(
       (collectible) => {
@@ -61,7 +61,7 @@ describe("Unit tests for handlePayload - validate", () => {
     );
   });
 
-  it("validate - Request is handled correctly (with validateRequest error)", () => {
+  it("validate - with validateQuery error)", () => {
     expect.assertions(1);
     return handlePayload(val_collectibleInvalid).catch((collectible) => {
       expect(collectible).toMatchInlineSnapshot(`
@@ -80,7 +80,7 @@ describe("Unit tests for handlePayload - validate", () => {
     });
   });
 
-  it("validate - Request is handled correctly (with SQL error thrown by SQLite)", () => {
+  it("validate - with SQLite error", () => {
     expect.assertions(1);
     return handlePayload(val_collectibleValidSQLError).catch((collectible) => {
       expect(collectible).toMatchInlineSnapshot(`
@@ -103,7 +103,7 @@ describe("Unit tests for handlePayload - validate", () => {
 });
 
 describe("Unit tests for handlePayload - evaluate", () => {
-  it("evaluate - Request is handled correctly (without error) and query results are identical", () => {
+  it("evaluate - without error and same query results", () => {
     expect.assertions(1);
     return handlePayload(eval_collectibleValidWithoutResultsSameResults).then(
       (collectible) => {
@@ -154,7 +154,7 @@ describe("Unit tests for handlePayload - evaluate", () => {
     );
   });
 
-  it("evaluate - Request is handled correctly (without error) and query results are not identical", () => {
+  it("evaluate - without error and different query results", () => {
     expect.assertions(1);
     return handlePayload(
       eval_collectibleValidWithoutResultsDifferentResults
@@ -220,7 +220,7 @@ describe("Unit tests for handlePayload - evaluate", () => {
     });
   });
 
-  it("evaluate - Request is handled correctly (with validateQuery error)", () => {
+  it("evaluate - with validateQuery error", () => {
     expect.assertions(1);
     return handlePayload(eval_collectibleInvalidWithoutResults_1).catch(
       (collectible) => {
@@ -242,7 +242,7 @@ describe("Unit tests for handlePayload - evaluate", () => {
     );
   });
 
-  it("evaluate - Request is handled correctly (with SQL error thrown by SQLite)", () => {
+  it("evaluate - with SQLite error", () => {
     expect.assertions(1);
     return handlePayload(eval_collectibleValidSQLError).catch((collectible) => {
       expect(collectible).toMatchInlineSnapshot(`

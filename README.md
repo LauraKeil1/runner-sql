@@ -42,7 +42,7 @@ localhost:80/endpoints
 }
 ```
 
-### Handling the payload (validate) - Valid SQL-statement (Request / Response):
+### Handling the payload - validate - without error
 
 ```json
 curl --location --request POST 'localhost:80/payload' \
@@ -98,7 +98,7 @@ curl --location --request POST 'localhost:80/payload' \
 }
 ```
 
-### Handling the payload (validate) - Invalid SQL-Statement 1 (Request / Response):
+### Handling the payload - validate - with validateQuery error
 
 ```json
 curl --location --request POST 'localhost:80/payload' \
@@ -126,7 +126,7 @@ curl --location --request POST 'localhost:80/payload' \
 }
 ```
 
-### Handling the payload (validate) - Invalid SQL-Statement 2 (Request / Response):
+### Handling the payload - validate - with SQLite error
 
 ```json
 curl --location --request POST 'localhost:80/payload' \
@@ -156,7 +156,7 @@ curl --location --request POST 'localhost:80/payload' \
 }
 ```
 
-### Handling the payload (evaluate) - Valid SQL-statements and same results (cURL Request / Response):
+### Handling the payload - evaluate - without error and same query results
 
 ```json
 curl --location --request POST 'localhost:80/payload' \
@@ -216,7 +216,7 @@ curl --location --request POST 'localhost:80/payload' \
 }
 ```
 
-### Handling the payload (evaluate) - Valid SQL-statements and different results (Request / Response):
+### Handling the payload - evaluate - without error and different query results
 
 ```json
 curl --location --request POST 'localhost:80/payload' \
@@ -291,7 +291,7 @@ curl --location --request POST 'localhost:80/payload' \
 }
 ```
 
-### Handling the payload (evaluate) - Invalid SQL-Statement 1 (Request / Response):
+### Handling the payload - evaluate - with validateQuery error
 
 ```json
 curl --location --request POST 'localhost:80/payload' \
@@ -321,7 +321,7 @@ curl --location --request POST 'localhost:80/payload' \
 }
 ```
 
-### Handling the payload (evaluate) - Invalid SQL-Statement 2 (Request / Response):
+### Handling the payload - evaluate - with SQLite error
 
 ```json
 curl --location --request POST 'localhost:80/payload' \
