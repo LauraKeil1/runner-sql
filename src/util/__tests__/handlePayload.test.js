@@ -11,6 +11,9 @@ const eval_collectibleInvalidWithoutResults_1 = require("../__mockData__/server.
 const eval_collectibleValidWithoutResultsDifferentResults = require("../__mockData__/server.mock")
   .eval_collectibleValidWithoutResultsDifferentResults;
 
+const eval_collectibleValidSQLError = require("../__mockData__/server.mock")
+  .eval_collectibleValidSQLError;
+
 const val_collectibleValidWithoutResults = require("../__mockData__/server.mock")
   .val_collectibleValidWithoutResults;
 const val_collectibleValidSQLError = require("../__mockData__/server.mock")
@@ -241,7 +244,7 @@ describe("Unit tests for handlePayload - evaluate", () => {
 
   it("evaluate - Request is handled correctly (with SQL error thrown by SQLite)", () => {
     expect.assertions(1);
-    return handlePayload(val_collectibleValidSQLError).catch((collectible) => {
+    return handlePayload(eval_collectibleValidSQLError).catch((collectible) => {
       expect(collectible).toMatchInlineSnapshot(`
         Object {
           "error": Object {
@@ -251,9 +254,10 @@ describe("Unit tests for handlePayload - evaluate", () => {
             "queryId": "query1",
           },
           "query1": "SELECT * FROM person ORDER BY LastName DESC LIMIT 1",
+          "query2": "SELECT * FROM customers ORDER BY LastName DESC LIMIT 1",
           "queryResult1": undefined,
           "queryResult2": undefined,
-          "request_type": "validate",
+          "request_type": "evaluate",
           "test_results": false,
         }
       `);

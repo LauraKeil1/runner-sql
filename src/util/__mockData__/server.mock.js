@@ -77,6 +77,16 @@ const val_collectibleInvalid = {
   error: undefined,
 };
 
+const eval_collectibleValidSQLError = {
+  request_type: "evaluate",
+  query1: "SELECT * FROM person ORDER BY LastName DESC LIMIT 1",
+  query2: "SELECT * FROM customers ORDER BY LastName DESC LIMIT 1",
+  queryResult1: undefined,
+  queryResult2: undefined,
+  test_results: undefined,
+  error: undefined,
+};
+
 const eval_collectibleInvalidWithoutResults_1 = {
   request_type: "evaluate",
   query1: "SELECT * FROM customers ORDER BY LastName DESC LIMIT 1",
@@ -226,3 +236,4 @@ exports.eval_collectibleValidWithResultsSameResults = eval_collectibleValidWithR
 exports.eval_collectibleValidWithResultsDifferentResults = eval_collectibleValidWithResultsDifferentResults;
 exports.val_collectibleValidSQLError = val_collectibleValidSQLError;
 exports.val_collectibleInvalid = val_collectibleInvalid;
+exports.eval_collectibleValidSQLError = eval_collectibleValidSQLError;
