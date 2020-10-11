@@ -8,7 +8,7 @@ const getQueryResults = function (collectible, query, queryId, db) {
   return new Promise(function (resolve, reject) {
     db.all(query, [], (err, rows) => {
       if (err) {
-        reject({ ...collectible, test_results: false, error: err });
+        reject({ ...collectible, test_results: false, error: {queryId: queryId, errno: err.errno, code: err.code, message: err.message}});
       }
       if (collectible.request_type == "evaluate") {
         if (queryId == "query1") {

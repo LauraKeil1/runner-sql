@@ -19,14 +19,20 @@ const validateQuery = function (collectible, query, queryId) {
       reject({
         ...collectible,
         test_results: false,
-        error: queryId + " is not a SELECT-statement",
+        error: 
+        {queryId: queryId,
+         message: "Query is not a SELECT-statement",
+        }
       });
     } else {
       if (query.indexOf(";") >= 0 && query.length - query.indexOf(";") > 1) {
         reject({
           ...collectible,
           test_results: false,
-          error: queryId + " is an invalid SQL-statement. The statement needs to end after the ';'",
+          error: {
+            queryId: queryId,
+            message: "Query is an invalid SQL-statement. The statement needs to end after the ';'",
+          }
         });
       } else {
         resolve(collectible);
