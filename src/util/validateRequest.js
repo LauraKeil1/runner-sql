@@ -1,8 +1,7 @@
 "use strict";
 
 /**
- * Validates the request by checking if query1 and query2 are available
- * TODO: Might need some more checks (depending on how the request should look like)
+ * Validates the request by checking if all mandatory params are available
  */
 
 const validateRequest = function (collectible) {
