@@ -13,8 +13,8 @@ const validateQuery = function (collectible, query, queryId) {
       query.includes("DROP") ||
       query.includes("ALTER") ||
       query.includes("DELETE") ||
-      query.includes("INSERT")
-      // TODO: add more words that are "forbidden"
+      query.includes("INSERT") ||
+      query.includes("TRUNCATE")
     ) {
       reject({
         ...collectible,
