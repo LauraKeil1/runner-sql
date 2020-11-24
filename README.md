@@ -32,7 +32,7 @@ docker build --tag runner-sql:1.0 .
 docker run --publish 80:80 --name runner-sql runner-sql:1.0
 ```
 
-# Sample requests
+# Sample requests/responses
 
 ### Getting the endpoints:
 
