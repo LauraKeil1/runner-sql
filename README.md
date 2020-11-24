@@ -34,7 +34,7 @@ docker run --publish 80:80 --name runner-sql runner-sql:1.0
 
 # Sample requests
 
-### Getting the endpoints (Request / Response):
+### Getting the endpoints:
 
 ```json
 curl --location --request GET 'localhost:80/endpoints'
