@@ -1,7 +1,7 @@
 # Setup/Getting started
 
-Prerequisites: [node](https://nodejs.org/en/) and [yarn 1.x.x](https://classic.yarnpkg.com/lang/en/) are installyed on your system
-If you want to run it via Docker: [docker](https://www.docker.com/) is installed on your system.
+- Prerequisites: [node](https://nodejs.org/en/) and [yarn 1.x.x](https://classic.yarnpkg.com/lang/en/) are installyed on your system
+- If you want to run it via Docker: [docker](https://www.docker.com/) is installed on your system.
 
 ```
 git clone https://github.com/LauraKeil1/runner-sql.git
