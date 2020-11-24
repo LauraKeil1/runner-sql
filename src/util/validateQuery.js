@@ -9,12 +9,12 @@
 const validateQuery = function (collectible, query, queryId) {
   return new Promise(function (resolve, reject) {
     if (
-      !query.includes("SELECT") ||
-      query.includes("DROP") ||
-      query.includes("ALTER") ||
-      query.includes("DELETE") ||
-      query.includes("INSERT") ||
-      query.includes("TRUNCATE")
+      !query.toLowerCase().includes("select") ||
+      query.toLowerCase().includes("drop") ||
+      query.toLowerCase().includes("alter") ||
+      query.toLowerCase().includes("delete") ||
+      query.toLowerCase().includes("insert") ||
+      query.toLowerCase().includes("truncate")
     ) {
       reject({
         ...collectible,
