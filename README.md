@@ -1,5 +1,9 @@
 # Setup
 
+```
+Git clone https://github.com/LauraKeil1/runner-sql.git
+```
+
 Prerequisites: [node](https://nodejs.org/en/) and [yarn 1.x.x](https://classic.yarnpkg.com/lang/en/) are installyed on your system
 
 ```
@@ -303,7 +307,7 @@ curl --location --request POST 'localhost:80/payload' \
   "payload": {
   	"request_type": "evaluate",
     "query1": "SELECT * FROM customers ORDER BY LastName DESC LIMIT 1",
-    "query2": "* FROM customers ORDER BY LastName DESC LIMIT 1",
+    "query2": "* FROM customers ORDER BY LastName DESC LIMIT 1"
   }
 }'
 ```
@@ -333,7 +337,7 @@ curl --location --request POST 'localhost:80/payload' \
   "payload": {
   	"request_type": "evaluate",
     "query1": "SELECT * FROM customers ORDER BY LastName DESC LIMIT 1",
-    "query2": "SELECT * FROM person ORDER BY LastName DESC LIMIT 1",
+    "query2": "SELECT * FROM person ORDER BY LastName DESC LIMIT 1"
   }
 }'
 ```
