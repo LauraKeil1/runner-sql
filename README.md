@@ -10,8 +10,6 @@ Git clone https://github.com/LauraKeil1/runner-sql.git
 yarn install
 ```
 
-# Running the server
-
 ```
 yarn start
 ```
