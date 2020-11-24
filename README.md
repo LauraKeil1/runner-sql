@@ -3,7 +3,7 @@
 Prerequisites: [node](https://nodejs.org/en/) and [yarn 1.x.x](https://classic.yarnpkg.com/lang/en/) are installyed on your system
 
 ```
-Git clone https://github.com/LauraKeil1/runner-sql.git
+git clone https://github.com/LauraKeil1/runner-sql.git
 ```
 
 ```
