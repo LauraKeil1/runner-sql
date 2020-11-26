@@ -5,6 +5,7 @@
 
 ```
 git clone https://github.com/LauraKeil1/runner-sql.git
+cd runner-sql
 ```
 
 ```
