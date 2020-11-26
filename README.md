@@ -13,6 +13,16 @@ yarn install
 yarn start
 ```
 
+## Custom Port
+
+Express will start on port 80 if nothing else is specified. On same system root
+rights are required to run a service on port 80. You can change the port by
+setting an environment variable `PORT`. For example:
+
+```
+PORT=3000 yarn start
+```
+
 # Sample requests/responses
 
 - All sample requests are included in the following Postman collection: https://www.postman.com/collections/61be4947eca78d87d714 (you can just open the link, copy everything and use the import feature in Postman)
